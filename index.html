@@ -1,97 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="My Personal Plotfolio" />
-    <meta property="og:image" content="resources/logo/social.png" />
-    <meta property="og:image:height" content="300" />
-    <meta property="og:image:width" content="400" />
-    <title>Raffsun</title>
+    <meta name="description" content="Raffsun | Modern Portfolio & Skill Developer" />
+    <title>Raffsun | Designer & Developer</title>
+    
     <link rel="icon" href="resources/logo/logo.png" type="image/x-icon">
-    <link rel="stylesheet" href="home/styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" />
+
     <script src="https://kit.fontawesome.com/4c390d8bb6.js" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <div class="one"></div>
-    <header>
-    
-        <div class="profile">
-            <div class="img"><img src="resources/home/Raffsun.png" alt="raffsun image"/></div>
-            <div class="name"><h1>Raffsun Zany</h1></div>
-        </div>
-        <section class="first_div">
-          <ul class="manus">
-              <li><a href="index.html" alt="home"><i class="fa-solid fa-house"></i></a></li>
-              <li><a href="gallery/gallery.html" alt="gallery"><i class="fa-brands fa-envira"></i></a></li>
-              <li><a href="blogs/blogs.html" alt="blogs"><i class="fa-solid fa-blog"></i></a></li>
-              <li><a href="skills/skills.html" alt="skill"><i class="fa-solid fa-feather"></i></a></li>
-              <li><a href="contact/contact.html" alt="contact"><i class="fa-solid fa-address-book"></i></a></li>
-          </ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="dark-theme">
 
-      </section>
-        <nav>
-            <ul class="menu">
+    <div id="progress-bar"></div>
 
-                <li>
-                  <a href="index.html" class="nav-link">Home</a>
-                </li>
-    
-    
-                <li>
-                  <a href="gallery/gallery.html" class="nav-link">Gallery</a>
-                </li>
-
-                <li>
-                    <a href="skills/skills.html" class="nav-link">Skills</a>
-                </li>
-
-                <li>
-                    <a href="blogs/blogs.html" class="nav-link">Blogs</a>
-                </li>
-
-                <li>
-                    <a href="contact/contact.html" class="nav-link">Contact</a>
-                </li>
-    
-              </ul>
-              <label id="icon"><i class="fa-duotone fa-bars"></i></label>
-
+    <header id="main-nav">
+        <div class="nav-container">
+            <a href="#" class="logo-link" data-page="home">
+                <img src="resources/logo/logo.png" alt="R" class="nav-logo">
+                <span class="logo-text">RAFFSUN</span>
+            </a>
+            
+            <nav class="desktop-menu">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="gallery">Gallery</a></li>
+                    <li><a href="#" class="nav-link" data-page="skills">Skills</a></li>
+                    <li><a href="#" class="nav-link" data-page="blogs">Blogs</a></li>
+                    <li><a href="#" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
             </nav>
 
-        <div class="social">
-            <ul class="social_menu">
-                <li><a href="http://www.facebook.com/raffsun.zany"  target=”_blank” alt="facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-                <li><a href="http://www.instagram.com/me.raffsun" target=”_blank” alt="instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="https://github.com/raffsun7" target=”_blank” alt="github" title="Github"><i class="fa-brands fa-github"></i></a></li>
-                <li><a href="https://www.freecodecamp.org/raffsun7" target=”_blank” alt="freeCodeCamp" title="FreeCodeCamp"><i class="fa-brands fa-free-code-camp"></i></a></li>
-            </ul>
-            <label>
-
-            </label>
-        </div>
-
-        
-        <footer class="desk_footer">Raffsun <a href="showcase/index.html" style="color: white;   text-decoration: none;">©</a> 2022</footer>
-    
-    </header>
-    <section class="elements">
-        <div class="titles">
-            <h3>Hello, It's me...</h3>
-            <h1>Raffsun</h1>
-            <p>Basically, I am a skill developer. But it's hard to say which one I'm better at. 
-                But I like to do everything. And I do what I love. I think I can do everything 
-                according to my needs.
-            </p>
-        </div>
-        <div class="loader">
-            <div class="frame">
-                <div class="animation"></div>
+            <div class="nav-actions">
+                <a href="https://github.com/raffsun7" target="_blank" class="social-icon-btn"><i class="fab fa-github"></i></a>
+                <button id="menu-toggle" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
             </div>
         </div>
-    </section>
+    </header>
 
-    <footer class="pn_footer">Raffsun <a href="showcase/index.html" style="color: white;   text-decoration: none;">©</a> 2022</footer>
-    
-  </body>
+    <main id="app">
+        <div class="loader-screen">
+            <div class="spinner"></div>
+        </div>
+    </main>
+
+    <footer id="global-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Raffsun. Designed with <span class="heart">&hearts;</span></p>
+            <div class="footer-status">
+                <span class="status-dot"></span> Available for Projects
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="ui.js"></script>
+    <script src="animations.js"></script>
+</body>
 </html>

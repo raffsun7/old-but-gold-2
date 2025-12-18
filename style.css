@@ -1,0 +1,333 @@
+/* ==========================================================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================================================== */
+:root {
+    /* Colors */
+    --bg-color: #050505;
+    --surface-color: rgba(255, 255, 255, 0.05);
+    --primary-color: #5896FF;
+    --accent-color: #FF5757;
+    --text-main: #FFFFFF;
+    --text-dim: #A0A0A0;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    /* Effects */
+    --blur: blur(12px);
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    
+    /* Layout */
+    --nav-height: 80px;
+    --container-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+
+/* ==========================================================================
+   2. LAYOUT: SPA SHELL
+   ========================================================================== */
+#main-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: var(--blur);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-logo { height: 40px; width: 40px; }
+.logo-text { font-weight: 800; letter-spacing: 2px; font-size: 1.2rem; }
+
+.desktop-menu ul { display: flex; gap: 30px; }
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active { color: var(--primary-color); }
+
+/* Active Indicator */
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+#app {
+    margin-top: var(--nav-height);
+    min-height: calc(100vh - var(--nav-height));
+    padding: 2rem;
+}
+
+/* ==========================================================================
+   3. MODERN COMPONENTS (Glass Cards)
+   ========================================================================== */
+.glass-card {
+    background: var(--surface-color);
+    backdrop-filter: var(--blur);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+/* ==========================================================================
+   4. SPA TRANSITIONS
+   ========================================================================== */
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   5. RESPONSIVENESS (Mobile First)
+   ========================================================================== */
+
+/* Menu Toggle Bar (Hamburger) */
+#menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: var(--transition);
+}
+
+@media (max-width: 768px) {
+    .desktop-menu { display: none; } /* We will handle mobile menu in JS/UI.js later */
+    #menu-toggle { display: flex; }
+    
+    .nav-container { padding: 0 1.5rem; }
+    .logo-text { font-size: 1rem; }
+    
+    #app { padding: 1rem; }
+}
+
+/* ==========================================================================
+   6. GLOBAL FOOTER
+   ========================================================================== */
+#global-footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.heart { color: var(--accent-color); }
+.status-dot {
+    height: 8px;
+    width: 8px;
+    background: #00FF00;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    box-shadow: 0 0 8px #00FF00;
+}
+
+
+
+/* ==========================================================================
+   1. GLOBAL VARIABLES & CORE RESET
+   ========================================================================== */
+:root {
+    --bg-color: #050505;
+    --surface: rgba(255, 255, 255, 0.05);
+    --primary: #5896FF;
+    --accent: #FF5757;
+    --text: #FFFFFF;
+    --text-dim: #A0A0A0;
+    --glass: blur(15px);
+    --border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. NAVIGATION SHELL (Glassmorphism)
+   ========================================================================== */
+#main-nav {
+    position: fixed;
+    top: 0; width: 100%; height: 80px;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: var(--glass);
+    border-bottom: 1px solid var(--border);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 90%; max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo-link { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 1px; }
+.nav-logo { height: 32px; width: 32px; }
+
+.desktop-menu ul { display: flex; gap: 30px; }
+.nav-link { font-size: 0.9rem; color: var(--text-dim); cursor: pointer; transition: var(--transition); }
+.nav-link:hover, .nav-link.active { color: var(--primary); }
+
+/* ==========================================================================
+   3. UNIVERSAL PAGE STYLING
+   ========================================================================== */
+#app { margin-top: 80px; padding: 4rem 2rem; min-height: 80vh; }
+
+.section-title {
+    font-size: 2.5rem; font-weight: 800; text-align: center;
+    margin-bottom: 3rem; background: linear-gradient(to right, #fff, var(--text-dim));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; width: 100%; max-width: 1100px; margin: 0 auto;
+}
+
+/* Common Card Style */
+.glass-card {
+    background: var(--surface);
+    backdrop-filter: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   4. HOME PAGE (Hero)
+   ========================================================================== */
+.hero { height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+.glitch-text { font-size: 4rem; font-weight: 900; margin: 1rem 0; }
+.hero p { color: var(--text-dim); font-size: 1.2rem; margin-bottom: 2rem; }
+
+.primary-btn, .secondary-btn {
+    padding: 12px 28px; border-radius: 50px; border: none; font-weight: 600;
+    cursor: pointer; transition: var(--transition); margin: 0 10px;
+}
+.primary-btn { background: var(--primary); color: #000; }
+.secondary-btn { background: transparent; color: #fff; border: 1px solid var(--border); }
+.primary-btn:hover { box-shadow: 0 0 20px rgba(88, 150, 255, 0.4); }
+
+/* ==========================================================================
+   5. SKILLS PAGE
+   ========================================================================== */
+.skill-card { text-align: center; }
+.skill-card i { font-size: 3rem; color: var(--primary); margin-bottom: 1rem; }
+.badge { display: inline-block; padding: 4px 12px; background: rgba(88, 150, 255, 0.1); 
+         color: var(--primary); border-radius: 20px; font-size: 0.8rem; margin-top: 10px; }
+
+/* ==========================================================================
+   6. GALLERY PAGE (Books)
+   ========================================================================== */
+.book-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.book-card img { width: 100%; height: 350px; object-fit: cover; }
+.book-info { padding: 1.5rem; }
+.book-info h3 { margin-bottom: 0.5rem; }
+.book-info p { font-size: 0.9rem; color: var(--text-dim); }
+
+/* ==========================================================================
+   7. BLOGS PAGE (Music Player)
+   ========================================================================== */
+.music-player-container { max-width: 500px; margin: 0 auto; text-align: center; }
+.track-art { width: 200px; height: 200px; margin: 0 auto 1.5rem; border-radius: 50%;
+             background-size: cover; background-position: center; border: 4px solid var(--border); }
+.player-controls { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
+.player-controls button { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+/* ==========================================================================
+   8. CONTACT PAGE
+   ========================================================================== */
+.contact-container { max-width: 600px; margin: 0 auto; }
+#contact-form { display: flex; flex-direction: column; gap: 1rem; }
+#contact-form input, #contact-form textarea {
+    background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1rem; color: #fff; outline: none;
+}
+#contact-form input:focus { border-color: var(--primary); }
+
+/* ==========================================================================
+   9. MOBILE RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .glitch-text { font-size: 2.5rem; }
+    .desktop-menu { display: none; } /* Add your mobile logic here if needed */
+    .grid-layout { grid-template-columns: 1fr; }
+}
